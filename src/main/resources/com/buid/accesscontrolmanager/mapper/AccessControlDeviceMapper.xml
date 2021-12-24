@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buid.accesscontrolmanager.mapper.AccessControlDeviceMapper">
+   <resultMap id="get" type="AccessControlDevice">
+      <id property="id" column="id"></id>
+      <result property="principal" column="principal"/>
+      <result property="supplier" column="supplier"/>
+      <result property="brand" column="brand"/>
+      <result property="hospitalId" column="hospital_id"/>
+      <result property="status" column="status"/>
+      <result property="addTime" column="add_time"/>
+      <association property="buiding" javaType="Buiding">
+         <id property="id" column="id"/>
+         <result property="name" column="name"/>
+      </association>
+   </resultMap>
+   <select id="getAll" resultMap="get">
+      select a.hospital_id,a.id,a.principal,a.supplier,b.name,a.status,a.add_time from buiding b,access_control_device a where b.id=a.hospital_id
+      <if test="id!=0 and id!=null">
+         and a.hospital_id=#{id}
+      </if>
+      order by a.add_time desc
+   </select>
+</mapper>

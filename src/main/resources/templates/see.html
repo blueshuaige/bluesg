@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr><td th:align="center" th:colspan="7"><h1>园区门禁管理系统</h1></td></tr>
+    <tr>
+        <td th:align="center" th:colspan="6">
+            <select>
+                <option>---请选择---</option>
+                <option value="1" id="a" > </option>
+                <option value="2" id="b"></option>
+                <option value="3" id="c"></option>
+                <option value="4" id="d"></option>
+                <option value="5" id="e"></option>
+                <option value="6" id="f"></option>
+            </select>
+            <input type="submit" id="cx" value="查询">
+            <td><a href="" type="submit">添加</a></td>
+        </td>
+    </tr>
+    <tr>
+        <td th:align="center">负责人</td>
+        <td th:align="center">供货商</td>
+        <td th:align="center">品牌</td>
+        <td th:align="center">所属楼宇</td>
+        <td th:align="center">安装日期</td>
+        <td th:align="center">运行状态</td>
+        <td th:align="center">操作</td>
+    </tr>
+    <tr th:each="u:${List}">
+        <td th:text="${u.id}" hidden></td>
+        <td th:text="${u.principal}"></td>
+        <td th:text="${u.supplier}"></td>
+        <td th:text="${u.brand}"/>
+        <td th:text="${u.hospitalId}"></td>
+        <td th:text="${u.addTime}"></td>
+        <td th:if="${u.status}==1" >
+            禁用
+        </td>
+        <td th:if="${u.status}==0" >
+            启用
+        </td>
+    </tr>
+</table>
+</body>
+</html>
